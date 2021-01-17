@@ -2,8 +2,8 @@
 console.clear();
 
 {
-    let year=2020;
-    let month=4;
+    let year=2021;
+    let month=0;
 
     function getCalenderHead () {
         const dates=[];
@@ -16,7 +16,6 @@ console.clear();
                 isToday: false,
                 isDisabled: true,
             });
-
         }
         return dates;
     }
@@ -55,14 +54,14 @@ console.clear();
             tbody.removeChild(tbody.firstChild);
         }
 
-        const title=`${year}/${String(month + 1).padStart(2, `0`)}`;
+        const title=`${year}/${String(month+1).padStart(2, `0`)}`;
         document.getElementById(`title`).textContent=title;
+        console.log(title)
 
         const dates=[
             ...getCalenderHead(),
             ...getCalenderBody(),
             ...getCalenderTail(),
-
         ];
         const weeks=[];
         const weekCount =dates.length/7;
@@ -75,7 +74,6 @@ console.clear();
             week.forEach(date => {
                 const td=document.createElement(`td`);
                 td.textContent=date.date;
-                
 
                 if(date.isToday) {
                     td.classList.add(`today`);
@@ -87,26 +85,27 @@ console.clear();
             });
             document.querySelector(`tbody`).appendChild(tr);
         });
-
-        document.getElementById(`prev`).addEventListener(`click`, () => {
-            month--;
-            if(month < 0) {
-                year--;
-                month=11;
-            }
-            createCalender();
-        });
-        document.getElementById(`next`).addEventListener(`click`, () => {
-            month++;
-            if(month > 11) {
-                year++;
-                month=0;
-            }
-            createCalender();
-        });
-
-
-       
     }
+
+    document.getElementById(`prev`).addEventListener(`click`, () => {
+        month--;
+        if(month < 0) {
+            year--;
+            month=11;
+        }
+        createCalender();
+        console.log(month,year)
+    });
+
+    document.getElementById(`next`).addEventListener(`click`, () => {
+        month++;
+        if(month > 11) {
+            year++;
+            month=0;
+        }
+        console.log(month,year)
+        createCalender();
+    });
+
     createCalender();
 }
