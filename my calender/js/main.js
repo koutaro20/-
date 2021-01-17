@@ -2,8 +2,8 @@
 console.clear();
 
 {
-    let year="2020"
-    let month="4"
+    let year=2020;
+    let month=4;
 
     function getCalenderHead () {
         const dates=[];
